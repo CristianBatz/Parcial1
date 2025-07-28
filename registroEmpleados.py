@@ -1,5 +1,5 @@
 class empleado:
-    def __init__(self,codigo,nombre,departamento,antiguedad):
+    def __init__(self, codigo, nombre, departamento, antiguedad):
         self.codigo = codigo
         self.nombre = nombre
         self.departamento = departamento
@@ -10,7 +10,7 @@ class empleado:
 
 
 class evaluacion:
-    def __init__(self,puntualidad,equipo,productividad,observacion):
+    def __init__(self, puntualidad, equipo, productividad, observacion):
         self.puntualidad = puntualidad
         self.equipo = equipo
         self.productividad = productividad
@@ -24,18 +24,19 @@ class evaluacion:
         print(f"Observación: {self.observacion}")
         print(f"Promedio: {self.calcular_promedio():.2f}")
 
+
 class contacto:
-    def __init__(self,email,telefono):
+    def __init__(self, email, telefono):
         self.email = email
         self.telefono = telefono
 
-        def mostrar_info(self):
-            print(f"Email: {self.email}, Teléfono: {self.telefono}")
+    def mostrar_info(self):
+        print(f"Email: {self.email}, Teléfono: {self.telefono}")
 
 
 empleados = {}
 opcion = 0
-while opcion !=5:
+while opcion != 5:
     print("=== REGISTRO EMPLEADO ===")
     print("1. Registro Empleado")
     print("2. Mostrar datos")
@@ -57,9 +58,9 @@ while opcion !=5:
             departamento = input("Departamento: ")
             antiguedad = input("Tiempo en la empresa: ")
             print("Calificacion por desempeño del empleado")
-            puntualidad = int(input("Puntuacion en puntualidad: "))
-            productividad = int(input("Puntuacion en Productividad: "))
-            equipo = int(input("Puntuacion en Equipo: "))
+            puntualidad = int(input("Puntuacion en puntualidad (0-10): "))
+            productividad = int(input("Puntuacion en Productividad (0-10): "))
+            equipo = int(input("Puntuacion en Equipo (0-10): "))
             observacion = input("Observacion: ")
             telefono = input("Telefono: ")
             correo = input("Correo: ")
@@ -82,3 +83,21 @@ while opcion !=5:
             emp["empleado"].mostrar_info()
             emp["evaluacion"].mostrar_info()
             emp["contacto"].mostrar_info()
+
+    elif opcion == 3:
+        print("promedio empleado")
+        codigo = input("ingrese el codigo del empleado: ")
+        if codigo in empleados:
+            promedio = empleados[codigo]["evaluacion"].calcular_promedio()
+            print(f"Promedio de evaluación de {empleados[codigo]['empleado'].nombre}: {promedio:.2f}")
+        else:
+            print("Empleado no encontrado.")
+
+    elif opcion == 4:
+        codigo = input("Ingrese el código del empleado: ")
+        if codigo in empleados:
+            empleados[codigo]["evaluacion"].mostrar_info()
+        else:
+            print("Empleado no encontrado.")
+    elif opcion == 5:
+        print("Saliendo")
