@@ -36,13 +36,14 @@ class contacto:
 
 empleados = {}
 opcion = 0
-while opcion != 5:
+while opcion != 6:
     print("=== REGISTRO EMPLEADO ===")
     print("1. Registro Empleado")
     print("2. Mostrar datos")
-    print("3. Promedio empleado")
-    print("4. Desempeño empleado")
-    print("5. Salir")
+    print("3. Buscar empleado")
+    print("4. Promedio empleado")
+    print("5. Desempeño empleado")
+    print("6. Salir")
     try:
         opcion = int(input("Seleccione una opcion: "))
     except ValueError:
@@ -62,7 +63,7 @@ while opcion != 5:
             puntualidad = int(input("Puntuacion en puntualidad (0-10): "))
             productividad = int(input("Puntuacion en Productividad (0-10): "))
             equipo = int(input("Puntuacion en Equipo (0-10): "))
-            observaciones = int(input("Observaciones: "))
+            observaciones = input("Observaciones: ")
             telefono = input("Telefono: ")
             correo = input("Correo: ")
 
@@ -82,10 +83,19 @@ while opcion != 5:
             print("No hay empleados registrados.")
         for emp in empleados.values():
             emp["empleado"].mostrar_info()
-            emp["evaluacion"].mostrar_info()
             emp["contacto"].mostrar_info()
 
     elif opcion == 3:
+        print("Buscar Empleados")
+        codigo = input("Ingrese el codigo del empleado: ")
+        if codigo in empleados:
+            for emp2 in empleados.values():
+                emp2["empleado"].mostrar_info()
+                emp2["contacto"].mostrar_info()
+        else:
+            print("No hay empleados registrados.")
+
+    elif opcion == 4:
         print("promedio empleado")
         codigo = input("ingrese el codigo del empleado: ")
         if codigo in empleados:
@@ -94,7 +104,7 @@ while opcion != 5:
         else:
             print("Empleado no encontrado.")
 
-    elif opcion == 4:
+    elif opcion == 5:
         codigo = input("Ingrese el código del empleado: ")
         if codigo in empleados:
             for emp1 in empleados.values():
@@ -107,5 +117,6 @@ while opcion != 5:
                     print("estado : mejorar")
         else:
             print("Empleado no encontrado.")
-    elif opcion == 5:
+
+    elif opcion == 6:
         print("Saliendo")
